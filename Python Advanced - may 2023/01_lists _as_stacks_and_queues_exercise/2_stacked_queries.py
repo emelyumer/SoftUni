@@ -9,7 +9,9 @@ for index in range(n_lines):
         if stack:
             stack.pop()
     elif query[0] == "3":
-        print(max(stack))
+        if stack:
+            print(max(stack))
     elif query[0] == "4":
-        print(min(stack))
+        if stack:
+            print(min(stack))
 print(*stack[::-1], sep=", ")
