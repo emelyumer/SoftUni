@@ -13,10 +13,10 @@ for row in range(1, int(input()) + 1):
 
 if sum(even_set) == sum(odd_set):
     print(odd_set.union(even_set), sep=", ")
-elif sum(even_set) < sum(odd_set):
+elif sum(odd_set) > sum(even_set):
     print(*odd_set.difference(even_set), sep=", ")
-elif sum(even_set) > sum(odd_set):
-    print(*even_set.difference(odd_set), sep=", ")
+elif sum(odd_set) < sum(even_set):
+    print(*even_set.symmetric_difference(odd_set), sep=", ")
 
 
 
