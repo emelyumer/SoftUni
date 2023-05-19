@@ -1,7 +1,5 @@
 from collections import deque
-from math import floor
 string_expression = deque(input().split())
-# print(string_expression)
 
 idx = 0
 while len(string_expression) > 1:
