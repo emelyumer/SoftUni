@@ -5,7 +5,7 @@ gift_level = {150: ["Doll", 0], 250: ["Wooden train", 0], 300: ["Teddy bear", 0]
 # presents = {"Doll": 0, "Wooden train": 0, "Teddy bear": 0, "Bicycle": 0}
 no_presents = True
 
-while materials_toys and magic_level and no_presents == True:
+while materials_toys and magic_level:
     material = materials_toys.pop()
     magic = magic_level.popleft()
     result = material * magic
@@ -23,11 +23,21 @@ while materials_toys and magic_level and no_presents == True:
     elif result not in gift_level.keys():
         materials_toys.append(material + 15)
 
-    if gift_level[150][1] > 0 and gift_level[250][1] > 0:
-        no_presents = False
-    elif gift_level[300][1] > 0 and gift_level[400][1] > 0:
-        no_presents = False
-print("bravo")
+if gift_level[150][1] > 0 and gift_level[250][1] > 0:
+    no_presents = False
+elif gift_level[300][1] > 0 and gift_level[400][1] > 0:
+    no_presents = False
+
+if no_presents:
+    print("No presents this Christmas!")
+else:
+    print("The presents are crafted! Merry Christmas!")
+
+if materials_toys:
+    print(f"Materials left: {', '.join(str(x) for x in materials_toys)}")
+if magic_level:
+    print(f"Magic left: {', '.join(str(x) for x in magic_level)}")
+
 
 
 
