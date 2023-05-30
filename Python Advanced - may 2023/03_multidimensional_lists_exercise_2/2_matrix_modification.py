@@ -10,4 +10,4 @@ while command[0] != "END":
     else:
         print(f"Invalid coordinates")
     command = input().split()
-print(*[(' '. join(map(lambda x: str(x), row)) for row in matrix], sep="\n")
+print(*[' '. join([str(x) for x in row]) for row in matrix], sep="\n")
