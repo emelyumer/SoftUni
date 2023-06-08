@@ -1,12 +1,17 @@
 def func_executor(*funcs):
-    result = []
-    for function, args in funcs:
-        result.append(f"{function.__name__} - {function(*args)}")
-    return '\n'.join(result)
+    return '\n'.join([f"{function.__name__} - {function(*args)}" for function, args in funcs])
+
+# def func_executor(*funcs):
+#     result = []
+#     for function, args in funcs:
+#         result.append(f"{function.__name__} - {function(*args)}")
+#     return '\n'.join(result)
 
 
 def sum_numbers(num1, num2):
     return num1 + num2
+
+
 def multiply_numbers(num1, num2):
     return num1 * num2
 
