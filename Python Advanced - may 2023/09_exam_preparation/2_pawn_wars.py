@@ -46,8 +46,7 @@ while True:
     if white_next_pos[0] == 0:
         print(f"Game over! White pawn is promoted to a queen at {matrix[white_next_pos[0]][white_next_pos[1]]}.")
         break
-    if 0 < white_next_pos[0] < 7:
-        white_pos = white_next_pos
+    white_pos = white_next_pos
 
     ok_attack_pos = check_diagonals_b(black_pos)
     if ok_attack_pos:
@@ -57,5 +56,4 @@ while True:
     if black_next_pos[0] == 7:
         print(f"Game over! Black pawn is promoted to a queen at {matrix[black_next_pos[0]][black_next_pos[1]]}.")
         break
-    if 0 < black_next_pos[0] < 7:
-        black_pos = black_next_pos
+    black_pos = black_next_pos
