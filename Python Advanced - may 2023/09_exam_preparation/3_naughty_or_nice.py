@@ -1,65 +1,48 @@
-from collections import deque
-def naughty_or_nice_list(kids, *args, **kwargs):
-    kids = deque(kids)
-    CHECK = [k[0] for k in kids]
-    CHECK2 = [k[1] for k in kids]
-    final = {"Nice": [], "Naughty": [], "Not found": []}
-    rating = {}
-    counter = len(kids)
-    idx = 0
-    for r in args:
-        r = r.split("-")
-        rating[r[0]] = r[1]
+# https://judge.softuni.org/Contests/Practice/Index/3306#2
 
-    while idx < counter:
-        idx += 1
-        rk = kids.popleft()
-        check_rate = rk[0]
-        check_count = CHECK.count(check_rate)
-        if check_count > 1:
-            kids.append(rk)
-            continue
-        number = str(rk[0])
-        if number in list(rating.keys()):
-            final[rating[number]].append(rk[1])
-        else:
-            kids.append(rk)
+completed_list = {"Nice": [], "Naughty": [], "Not found": []}
+def naughty_or_nice_list(kids_list, *args, **kwargs):
 
+    for sorting in args:
+        number, rate = sorting.split("-")
+        matched_kids = []
+        for kid in kids_list:
+            if kid[0] == int(number):
+                matched_kids.append(kid)
+        if len(matched_kids) == 1:
+            completed_list[rate].append(matched_kids[0][1])
+            kids_list.remove(matched_kids[0])
+        matched_kids.clear()
 
+    for name, types in kwargs.items():
+        matched_kids = []
+        for kid in kids_list:
+            if kid[1] == name:
+                matched_kids.append(kid)
+        if len(matched_kids) == 1:
+            completed_list[types].append(matched_kids[0][1])
+            kids_list.remove(matched_kids[0])
+        matched_kids.clear()
 
-    if kwargs:
-        while kids:
-            nk = kids.popleft()
-            name = nk[1]
-            name_counter = CHECK2.count(name)
-            if name_counter > 1:
-                final["Not found"].append(name)
-                continue
+    for kid in kids_list:
+        completed_list["Not found"].append(kid[1])
 
-            if name in list(kwargs.keys()):
-                final[kwargs[name]].append(name)
-            else:
-                final["Not found"].append(name)
-    else:
-        final["Not found"].extend([k[1] for k in kids])
-
-    return '\n'.join([f"{key}: {', '.join(value)}" for key, value in final.items() if value])
+    return '\n'.join([f"{key}: {', '.join(value)}" for key, value in completed_list.items() if value])
 
 
-
-print(naughty_or_nice_list(
- [
- (7, "Peter"),
- (1, "Lilly"),
- (2, "Peter"),
- (12, "Peter"),
- (3, "Simon"),
- ],
- "3-Nice",
- "5-Naughty",
- "2-Nice",
- "1-Nice",
- ))
+# print(naughty_or_nice_list(
+#  [
+#  (7, "Peter"),
+#  (1, "Lilly"),
+#  (2, "Peter"),
+#  (12, "Peter"),
+#  (3, "Simon"),
+#  ],
+#  "3-Nice",
+#  "5-Naughty",
+#  "2-Nice",
+#  "1-Nice",
+#  ))
 
 print(naughty_or_nice_list(
  [
