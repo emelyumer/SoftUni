@@ -1,6 +1,7 @@
 # https://judge.softuni.org/Contests/Practice/Index/3306#2
 
 completed_list = {"Nice": [], "Naughty": [], "Not found": []}
+
 def naughty_or_nice_list(kids_list, *args, **kwargs):
 
     for sorting in args:
