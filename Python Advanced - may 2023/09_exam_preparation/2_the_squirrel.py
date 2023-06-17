@@ -1,3 +1,5 @@
+# https://judge.softuni.org/Contests/Practice/Index/3893#1
+
 def move(way):
     check_pos = [s_pos[0] + directions[way][0], s_pos[1] + directions[way][1]]
     if 0 <= check_pos[0] < size and 0 <= check_pos[1] < size:
@@ -25,6 +27,7 @@ for rr in range(size):
 for row in range(size):
     if "s" in matrix[row]:
         s_pos = [row, matrix[row].index("s")]
+
 for command in commands:
     next_pos = move(command)
     if not next_pos:
