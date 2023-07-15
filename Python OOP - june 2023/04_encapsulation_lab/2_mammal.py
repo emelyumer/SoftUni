@@ -16,6 +16,7 @@ class Mammal:
         return f"{self.name} is of type {self.type}"
 
 
+# print(Мammal._Mammal__kingdom)
 mammal = Mammal("Dog", "Domestic", "Bark")
 print(mammal.make_sound())
 print(mammal.get_kingdom())
