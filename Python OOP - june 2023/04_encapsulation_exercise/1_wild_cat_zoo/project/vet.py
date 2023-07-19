@@ -1,5 +1,5 @@
 from project.worker import Worker
 
 
-class Keeper(Worker):
+class Vet(Worker):
     pass
