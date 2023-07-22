@@ -7,15 +7,10 @@ class Hotel:
     def __init__(self, name: str) -> None:
         self.name = name
         self.rooms: List[Room] = []
-        self.__guests = 0
 
     @property
     def guests(self):
-        return self.__guests
-    
-    @guests.setter
-    def guests(self, value):
-        self.__guests = sum([g.guests for g in self.rooms])
+        return sum([g.guests for g in self.rooms])
 
     @classmethod
     def from_stars(cls, stars_count: int):
