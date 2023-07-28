@@ -10,14 +10,42 @@ class Person:
         return f"{self.name} {self.surname}"
 
     def __add__(self, other):
-        return Person(self.name, other.username)
+        person = Person(self.name, other.surname)
+        return person
 
 
 class Group:
-    def __init__(self, name: str, people):
+    def __init__(self, name: str, *people):
         self.name = name
         self.people: List[Person] = []
 
-    def __add__(self, other):
+    def __len__(self):
+        return len(self.people)
 
-        return Group(f"{self.name} {other.name}", sum(len(self.people) + len(other.people)))
+    def __add__(self, other):
+        group = Group(f"{self.name} {other.name}")
+        group.people = self.people + other.people
+        return group
+
+    def __repr__(self):
+        return f"Group {self.name} with members {', '.join([x.name for x in self.people])}"
+
+    def __getitem__(self, idx):
+        return f"Person {self.people[idx]}: {self.people[idx].name}"
+
+
+p0 = Person('Aliko', 'Dangote')
+p1 = Person('Bill', 'Gates')
+p2 = Person('Warren', 'Buffet')
+p3 = Person('Elon', 'Musk')
+p4 = p2 + p3
+first_group = Group('__VIP__', [p0, p1, p2])
+second_group = Group('Special', [p3, p4])
+third_group = first_group + second_group
+
+
+print(len(first_group))
+print(second_group)
+# print(third_group[0])
+# for person in third_group:
+#     print(person)
