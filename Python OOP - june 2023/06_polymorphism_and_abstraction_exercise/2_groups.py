@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Person:
     def __init__(self, name: str, surname: str):
         self.name = name
@@ -15,23 +12,22 @@ class Person:
 
 
 class Group:
-    def __init__(self, name: str, *people):
+    def __init__(self, name: str, people: list):
         self.name = name
-        self.people: List[Person] = []
+        self.people = people
 
     def __len__(self):
         return len(self.people)
 
     def __add__(self, other):
-        group = Group(f"{self.name} {other.name}")
-        group.people = self.people + other.people
+        group = Group(f"{self.name} {other.name}", self.people + other.people)
         return group
 
     def __repr__(self):
-        return f"Group {self.name} with members {', '.join([x.name for x in self.people])}"
+        return f"Group {self.name} with members {', '.join([str(x) for x in self.people])}"
 
     def __getitem__(self, idx):
-        return f"Person {self.people[idx]}: {self.people[idx].name}"
+        return f"Person {idx}: {str(self.people[idx])}" #t "Person {index}: {person's name}"
 
 
 p0 = Person('Aliko', 'Dangote')
@@ -46,6 +42,6 @@ third_group = first_group + second_group
 
 print(len(first_group))
 print(second_group)
-# print(third_group[0])
-# for person in third_group:
-#     print(person)
+print(third_group[0])
+for person in third_group:
+    print(person)

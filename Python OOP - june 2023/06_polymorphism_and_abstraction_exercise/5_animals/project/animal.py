@@ -8,7 +8,7 @@ class Animal(ABC):
         self.gender = gender
 
     def __repr__(self):
-        return f"This is {self.name}. {self.name} is a {self.age} year old {self.gender} {__class__.__name__}"
+        return f"This is {self.name}. {self.name} is a {self.age} year old {self.gender} {self.__class__.__name__}"
 
     @abstractmethod
     def make_sound(self):
