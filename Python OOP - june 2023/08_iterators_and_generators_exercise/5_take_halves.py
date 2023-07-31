@@ -10,7 +10,7 @@ def solution():
         for i in integers():
             yield i / 2
 
-    def take(n, seq):
+    def take(n, seq): # seq e  halves() от ред 22 се извиква така
         return [next(seq) for _ in range(n)]
 
 
