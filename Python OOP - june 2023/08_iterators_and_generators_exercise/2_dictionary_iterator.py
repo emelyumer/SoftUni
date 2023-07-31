@@ -1,5 +1,5 @@
 class dictionary_iter:
-    def __init__(self, dictionary):
+    def __init__(self, dictionary: dict):
         self.items = list(dictionary.items())
         self.index = -1
 
@@ -11,14 +11,19 @@ class dictionary_iter:
             raise StopIteration
 
         self.index += 1
+
         return self.items[self.index]
 
 
-result = dictionary_iter({1: "1", 2: "2"})
-for x in result:
-    print(x)
+# second option not working for judge
+class dictionary_iterator:
+    def __init__(self, dictionary: dict):
+        self.items = dictionary.items()
 
-result = dictionary_iter({"name": "Peter", "age": 24})
+    def __iter__(self):
+        return iter(self.items)
+
+
+result = dictionary_iterator({1: "1", 2: "2"})
 for x in result:
     print(x)
-    
