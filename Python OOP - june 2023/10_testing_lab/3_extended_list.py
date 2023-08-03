@@ -103,3 +103,69 @@ class IntegerListTest(unittest.TestCase):
         self.assertEqual(2, len(self.int_list.get_data()))
         self.assertEqual(2, self.int_list.get_data()[0])
 
+    def test_get_invalid_index_raises(self):
+        # at the beginning the elements are 3
+        self.assertEqual(3, len(self.int_list.get_data()))
+
+        with self.assertRaises(IndexError) as ex:
+            self.int_list.get(4)
+        self.assertEqual("Index is out of range", str(ex.exception))
+
+    def test_get_by_index(self):
+        # at the beginning the elements are 3
+        self.assertEqual(3, len(self.int_list.get_data()))
+
+        element = self.int_list.get(1)
+        self.assertEqual(2, element)
+
+    def test_insert_invalid_index_raises(self):
+        # at the beginning the elements are 3
+        self.assertEqual(3, len(self.int_list.get_data()))
+
+        with self.assertRaises(IndexError) as ex:
+            self.int_list.insert(5, 6)
+        self.assertEqual("Index is out of range", str(ex.exception))
+        self.assertEqual(3, len(self.int_list.get_data()))
+
+    def test_insert_element_not_integer_raises(self):
+        # at the beginning the elements are 3
+        self.assertEqual(3, len(self.int_list.get_data()))
+
+        with self.assertRaises(ValueError) as ex:
+            self.int_list.insert(2, 6.5)
+        self.assertEqual("Element is not Integer", str(ex.exception))
+        self.assertEqual(3, len(self.int_list.get_data()))
+
+    def test_insert(self):
+        # at the beginning the elements are 3
+        self.assertEqual(3, len(self.int_list.get_data()))
+        self.assertEqual([1, 2, 3], self.int_list.get_data())
+
+        self.int_list.insert(2, 6)
+
+        self.assertEqual(2, self.int_list.get_data().index(6))
+        self.assertIn(6, self.int_list.get_data())
+        self.assertEqual(4, len(self.int_list.get_data()))
+        self.assertEqual([1, 2, 6, 3], self.int_list.get_data())
+
+    def test_get_get_biggest(self):
+        some_integers = IntegerList(4, 12, -6)
+        result = some_integers.get_biggest()
+        self.assertEqual(12, result)
+
+    def test_get_index(self):
+        # at the beginning the elements are 3
+        self.assertEqual(3, len(self.int_list.get_data()))
+        self.assertEqual([1, 2, 3], self.int_list.get_data())
+        self.assertEqual(self.int_list.get_data()[1], 2)
+
+        result = self.int_list.get_index(2)
+
+        self.assertEqual(1, result)
+
+        self.assertEqual(3, len(self.int_list.get_data()))
+        self.assertEqual([1, 2, 3], self.int_list.get_data())
+
+
+if __name__ == "__main__":
+    unittest.main()
