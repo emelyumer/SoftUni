@@ -1,9 +1,6 @@
 from typing import List
-
-from project.movie_specification.action import Action
-from project.movie_specification.fantasy import Fantasy
 from project.movie_specification.movie import Movie
-from project.movie_specification.thriller import Thriller
+
 from project.user import User
 
 
@@ -17,8 +14,6 @@ class MovieApp:
 
         if existing_user:
             raise Exception("User already exists!")
-
-        #tuk bqh sazdala usera predi da proverq dali sashtvuva
 
         user = User(username, age)
         self.users_collection.append(user)
