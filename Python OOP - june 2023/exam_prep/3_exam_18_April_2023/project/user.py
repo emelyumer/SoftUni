@@ -59,3 +59,4 @@ class User:
     def __str__(self):
         return f"{self.first_name} {self.last_name} " \
                f"Driving license: {self.driving_license_number} Rating: {self.rating}"
+
